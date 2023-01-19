@@ -1,0 +1,110 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Oleo+Script+Swash+Caps&display=swap');
+.card .title {
+    text-align: center;
+    padding: 1rem;
+    font-size: 17px;
+}
+
+.box-content img {
+    width: 300px;
+    height: 400px;
+
+}
+
+*/ .character_card {
+    width: 40%;
+    height: 75%;
+    transition: 0.5s;
+}
+
+#avatar {
+    margin: auto;
+    
+}
+
+#profile_card{
+    width: 900px;
+    margin: auto;
+    top: 10px;
+}
+
+#delete_team_button{
+    display: block;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#delete_team_button{
+    display: block;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#create_team_button{
+    display: block;
+    margin-top: 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.user_content{
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    width: fit-content;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#character_avatar{
+    width: 20%;
+}
+
+
+#user_real_name {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    width: fit-content;
+    border-radius: 30px;
+    margin: auto;
+}
+
+#username {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    width: fit-content;
+    border-radius: 30px;
+    margin: auto;
+}
+
+#user_record {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    width: fit-content;
+    border-radius: 30px;
+    margin: auto;
+}
+
+#record {
+    text-align: center;
+    color: white;
+}
+
+#character_picture {
+    margin-left: 50px;
+}
+
+#movie_card {
+    z-index: 1;
+    border: 0;
+}
+
+#movie_carousel{
+    height: 100%;
+    width: 100%;
+  } 
+
+#movie_picture{
+    margin: auto;
+}

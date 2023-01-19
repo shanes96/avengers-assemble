@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Oleo+Script+Swash+Caps&display=swap');
+
+
+#opponent_avatar{
+    margin: auto;
+    width: 450px;
+    height: 450px;
+}
+
+.image-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.image-container img {
+    width: 20%;
+}
+
+#create_battle_text{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+#team_one_button{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+#team_two_button{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.user_content_team_name{
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+.battle_buttons{
+    display: flex;
+    justify-content: center;
+}
+
+#single_battle_button{
+    margin: 0 10px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.vote_counter, .challenged_opponent, .challenger{
+    font-family: 'Montserrat', sans-serif;
+}
+
+#profile_card{
+    width: 900px;
+    margin: auto;
+    top: 10px;
+}
+
+#movie_card {
+    z-index: 1;
+    border: 0;
+}
+
+#movie_carousel{
+    height: 100%;
+    width: 100%;
+  } 
+
+#movie_picture{
+    margin: auto;
+}
+
+#opponent_character_picture{
+    margin-left: -30px;
+}
+
+#user_real_name {
+    color: black;
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    width: fit-content;
+    border-radius: 30px;
+    margin: auto;
+}
+
+#battle_form_title{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+#opponent_character_avatar{
+    width: 20%;
+}

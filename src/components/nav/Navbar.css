@@ -1,0 +1,56 @@
+.navbar {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: left;
+    color: white;
+}
+
+.navbar__item {
+    flex-basis: 20%;
+    list-style-type: none;
+    color: white
+}
+
+
+#profile_picture {
+    width: 40px;
+    height: 40px;
+}
+
+#profile_pic_nav_bar {
+    right: 120px;
+    list-style-type: none;
+}
+
+#content_nav_bar {
+    margin-left: 450px;
+}
+
+
+#spiderman-img {
+    width: 100px;
+    position: relative;
+    transition: transform 0.2s;
+    margin-left: 100px;
+    background-color: transparent;
+}
+
+#spiderman-img:before {
+    content: "";
+    position: absolute;
+    top: -10px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    transition: transform 0.2s;
+}
+
+#spiderman-img:hover {
+    transform: scale(1.1);
+}
+
+#spiderman-img:before:hover {
+    transform: scale(1.1);
+}

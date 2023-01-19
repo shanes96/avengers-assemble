@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Oleo+Script+Swash+Caps&display=swap');
+
+.create_team_page_title {
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    color: black;
+    border-radius: 20px;
+    width: fit-content;
+    font-size: 30px;
+    margin-top: 10px;
+}
+
+::placeholder {
+    color: black;
+    font-weight: bolder;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#team_name_field {
+    outline: none;
+    background: none;
+    position: absolute;
+    border-radius: 40px;
+    top: 14%;
+    right: 0;
+    width: 350px;
+    height: 35px;
+    color: black;
+    font-size: 20px;
+    padding: 1.2rem;
+}
+
+#submit_team_button {
+    position: absolute;
+    top: 22%;
+    right: 0.8%;
+}
+
+.create_team_search_bar {
+    outline: none;
+    background: none;
+    position: absolute;
+    border-radius: 20px;
+    top: 8%;
+    right: 0;
+    width: 350px;
+    height: 35px;
+    color: black;
+    font-size: 20px;
+    padding: 1.2rem;
+}
+
+.content {
+    width: 80%;
+    margin: 3rem auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 1rem
+}
+
+.create_team_directions {
+    font-family: 'Montserrat', sans-serif;
+    background-color: white;
+    color: black;
+    border-radius: 8px;
+    width: fit-content;
+    font-size: 15px;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#create_character_picture{
+    width: 100%;
+    height: auto;
+    min-height: 320px;
+    padding: none;
+    margin: none;
+}
+
+#character_details {
+    width: 700px;
+    height: auto;
+    margin: auto;
+}
+
+.page_buttons {
+    display: flex;
+    justify-content: center;
+
+}
+
+#prev_button {
+    margin: 0 10px;
+}
+
+#next_button {
+    margin: 0 10px;
+}
+
+#character_detail_info,
+#character_detail_name {
+    font-family: 'Montserrat', sans-serif;
+
+}
+.card .title {
+    text-align: center;
+    padding: 1rem;
+    font-size: 17px;
+}
+
+.box-content {
+    width: 100%;
+    margin: 0 auto;
+    height: 600px;
+    color: black;
+    font-size: 1.3rem;
+    text-align: justify;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.right-box {
+    flex-basis: 20%;
+}
+
+.left-box {
+    flex-basis: 50%;
+}
+
+.box-content img {
+    width: 300px;
+    height: 400px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+}
+
+#update_team_text{
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
