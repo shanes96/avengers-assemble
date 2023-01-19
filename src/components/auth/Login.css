@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Oleo+Script+Swash+Caps&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Ruslan+Display&display=swap');
+
+* {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.aa_login_title {
+    font-family: "Ruslan Display", cursive;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-size: 52px;
+    text-align: center;
+    color: #ffcc66;
+    text-shadow: 1px 1px 0 red;
+    margin: 0px;
+}
+
+#title {
+    font-size: 50px;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.background {
+
+    background: linear-gradient(to bottom,
+            #021b79,
+            #0575e6);
+            height: 1000px;
+            width: 100%;
+
+}
+
+#image {
+    max-width: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.container .spiderman {
+    width: 380px;
+    vertical-align: top;
+    margin-top: -60px;
+    animation-name: animar;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    margin-left: -800px;
+    
+}
+
+.shadow {
+    width: 200px;
+    height: 20px;
+    margin: 20px 0;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    animation: sombra 2s alternate infinite;
+    margin-left: -800px;
+
+}
+
+@keyframes animar {
+    from {
+        transform: translateY(-100px);
+    }
+
+    to {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes sombra {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(0.6);
+        opacity: 0.2;
+    }
+}
+
+#login_card{
+    width: 36rem;
+    position: absolute;
+    top: 300px;
+    right: 200px;
+}
+
+#register_card{
+    width:25rem;
+    position: absolute;
+    top: 190px;
+    right: 320px;
+}
+
+.login_buttons{
+    display: flex;
+    justify-content: center;
+}
+
+#register_button, #submit_button{
+    margin: 0 10px;
+}
+
+.header{
+    position: absolute;
+    top: 200px;
+    right: 180px;
+    font-family: "Ruslan Display", cursive;
+    font-size: 52px;
+    text-align: center;
+    color: #ffcc66;
+    text-shadow: 1px 1px 0 red;
+    margin: 0px;
+}
+
+.register_title{
+    position:absolute;
+    top: 100px;
+    right: 180px;
+    font-family: "Ruslan Display", cursive;
+    font-size: 52px;
+    text-align: center;
+    color: #ffcc66;
+    text-shadow: 1px 1px 0 red;
+    margin: 0px;
+}

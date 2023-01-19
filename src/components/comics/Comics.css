@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Oleo+Script+Swash+Caps&display=swap');
+
+.page_title {
+    font-size: 50px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+.page_description {
+    font-size: 30px;
+    font-family: 'Montserrat', sans-serif;
+    color: white;
+}
+
+.comic_search_bar{
+    outline: none;
+    background: none;
+    position: absolute;
+    border-radius: 20px;
+    top: 10%;
+    right: 0;
+    width: 350px;
+    height: 35px;
+    color: black;
+    font-size: 20px;
+    padding: 1.2rem;
+
+}
+
+::placeholder {
+    color: black;
+    font-weight: bolder;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.page_buttons {
+    display: flex;
+    justify-content: center;
+
+}
+
+#next {
+    position: absolute;
+    bottom: 100;
+    right: 0;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#comic_cover {
+    width: 100%;
+    height: auto;
+    min-height: 320px;
+}
+
+#comic_button {
+    width: 100%;
+    margin: 5px 0px;
+}
+
+#comic_cover_details {
+    width: 700px;
+    height: auto;
+    margin: auto;
+}
+
+#comic_detail_title,
+#creators {
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+#next_button {
+    margin: 0 10px;
+}
+
+#prev_button {
+    margin: 0 10px;
+}
