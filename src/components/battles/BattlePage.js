@@ -1,8 +1,8 @@
-import { getBattles, addVote, getSpecificUserBattlesResults, getCompletedBattles,} from "../managers/BattleManager"
+import { getBattles, addVote, getSpecificUserBattlesResults, getCompletedBattles, } from "../managers/BattleManager"
 import { useEffect, useState } from "react"
 import "./BattlePage.css"
 import { getTeams } from "../managers/AuthManager"
-import { Link,useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { getSpecificUserBattles } from "../managers/BattleManager"
 
 export const BattlePage = () => {
@@ -111,6 +111,16 @@ export const BattlePage = () => {
                                                 })}
                                             </div>
                                             <div className="vote_counter">Number of Votes: {battle.number_of_votes_team_1}</div>
+                                            {(battle.winner !== null && battle.loser !== null) && battle?.team_1?.id === battle?.winner?.id ? (
+                                                                    <>
+                                                                        Winner
+                                                                    </>
+                                                                ) :
+                                                                    (battle.winner === null && battle.loser === null) ? null :
+                                                                        <>
+                                                                            Loser
+                                                                        </>
+                                                                }
                                             {allTeams.map((team) => {
                                                 if (team.id === battle.team_1?.id) {
                                                     console.log(avengerUserObject?.id);
@@ -123,26 +133,27 @@ export const BattlePage = () => {
                                                                 {battle.winner === null &&
                                                                     battle.team_2?.id != null
                                                                     ? (
-                                                                    <button
-                                                                        type="submit"
-                                                                        class="btn btn-danger"
-                                                                        id="team_one_button"
-                                                                        onClick={(evt) => {
-                                                                            evt.preventDefault();
-                                                                            const newVote = {
-                                                                                user: battle.team_1?.user.id,
-                                                                                battle: battle.id,
-                                                                                user_team_voted_for: battle.team_1?.id,
-                                                                            };
-                                                                            addVote(newVote).then((parsedResponse) => {
-                                                                                voteInfo(parsedResponse);
-                                                                            }
-                                                                            );
-                                                                        }}
-                                                                    >
-                                                                        Vote For This Team
-                                                                    </button>
-                                                                ) : null}
+                                                                        <button
+                                                                            type="submit"
+                                                                            class="btn btn-danger"
+                                                                            id="team_one_button"
+                                                                            onClick={(evt) => {
+                                                                                evt.preventDefault();
+                                                                                const newVote = {
+                                                                                    user: battle.team_1?.user.id,
+                                                                                    battle: battle.id,
+                                                                                    user_team_voted_for: battle.team_1?.id,
+                                                                                };
+                                                                                addVote(newVote).then((parsedResponse) => {
+                                                                                    voteInfo(parsedResponse);
+                                                                                }
+                                                                                );
+                                                                            }}
+                                                                        >
+                                                                            Vote For This Team
+                                                                        </button>
+
+                                                                    ) : null}
                                                             </>
                                                         );
                                                     }
@@ -173,6 +184,16 @@ export const BattlePage = () => {
                                             })}
                                         </div>
                                         <div className="vote_counter">Number of Votes: {battle.number_of_votes_team_2}</div>
+                                        {(battle.winner !== null && battle.loser !== null) && battle?.team_2?.id === battle?.winner?.id ? (
+                                                                    <>
+                                                                        Winner
+                                                                    </>
+                                                                ) :
+                                                                    (battle.winner === null && battle.loser === null) ? null :
+                                                                        <>
+                                                                            Loser
+                                                                        </>
+                                                                }
                                         {allTeams.map((team) => {
                                             if (team.id === battle.team_2?.id) {
                                                 if (
@@ -182,33 +203,32 @@ export const BattlePage = () => {
                                                     return (
                                                         <>
                                                             {battle.winner === null &&
-                                                                battle.team_2?.id != null 
+                                                                battle.team_2?.id != null
                                                                 ? (
-                                                                <button
-                                                                    type="submit"
-                                                                    id="team_two_button"
-                                                                    class="btn btn-danger"
-                                                                    onClick={(evt) => {
-                                                                        evt.preventDefault();
-                                                                        const newVote = {
-                                                                            user: battle.team_2?.user.id,
-                                                                            battle: battle.id,
-                                                                            user_team_voted_for: battle.team_2?.id,
-                                                                        };
-                                                                        addVote(newVote)
-                                                                            .then((parsedResponse) => {
-                                                                                voteInfo(parsedResponse);
-                                                                            })
-                                                                            .catch((error) => {
-                                                                                window.confirm("You cannot vote again");
-                                                                            });
-                                                                    }}
-                                                                >
-                                                                    Vote For This Team
-                                                                </button>
+                                                                    <button
+                                                                        type="submit"
+                                                                        id="team_two_button"
+                                                                        class="btn btn-danger"
+                                                                        onClick={(evt) => {
+                                                                            evt.preventDefault();
+                                                                            const newVote = {
+                                                                                user: battle.team_2?.user.id,
+                                                                                battle: battle.id,
+                                                                                user_team_voted_for: battle.team_2?.id,
+                                                                            };
+                                                                            addVote(newVote)
+                                                                                .then((parsedResponse) => {
+                                                                                    voteInfo(parsedResponse);
+                                                                                })
+                                                                                .catch((error) => {
+                                                                                    window.confirm("You cannot vote again");
+                                                                                });
+                                                                        }}
+                                                                    >
+                                                                        Vote For This Team
+                                                                    </button>
 
-                                                            ) : null}
-
+                                                                ) : null}
                                                         </>
                                                     );
                                                 }
@@ -217,8 +237,8 @@ export const BattlePage = () => {
                                         {
                                             battle.team_2 === null && avengerUserObject?.id === battle.user_being_challenged.id ? (
                                                 <button
-                                                id="team_two_button"
-                                                class="btn btn-danger"
+                                                    id="team_two_button"
+                                                    class="btn btn-danger"
                                                     onClick={() => navigate(`/battles/${battle.id}`)}
                                                 >
                                                     Pick Your Team!

@@ -1,12 +1,23 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom"
 import { Typeahead } from 'react-bootstrap-typeahead';
-
 import "./Navbar.css"
+import { getSpecificUserInfo } from "../managers/AuthManager";
 export const NavBar = () => {
     const navigate = useNavigate()
     const [selectedOption, setSelectedOption] = useState('');
     const [options, setOptions] = useState([]);
+    const [specificUsers, setSpecificUsers] = useState([]);
+    const avengerUser = localStorage.getItem("user");
+    const avengerUserObject = JSON.parse(avengerUser);
+
+    useEffect(() => {
+        async function fetchData() {
+            const response = await getSpecificUserInfo(avengerUserObject);
+            setSpecificUsers(response);
+        }
+        fetchData();
+    }, [avengerUserObject]);
 
     useEffect(() => {
         async function fetchData(searchQuery) {
@@ -41,7 +52,7 @@ export const NavBar = () => {
                             options={options}
                             placeholder="Search Character"
                             onChange={(selectedOptions) => handleSearch(selectedOptions)}
-                            onInputChange={(selectedOption) => setSelectedOption(selectedOption)}                        />
+                            onInputChange={(selectedOption) => setSelectedOption(selectedOption)} />
                         <div class="float-right">
                             <img src="https://png.pngitem.com/pimgs/s/523-5230756_spiderman-marvel-comics-png-transparent-png.png" alt="Spider-Man" id="spiderman-img" />
                         </div>
@@ -58,19 +69,28 @@ export const NavBar = () => {
                                 </li>
                             </ul>
                         </div>
-                        <li id="profile_pic_nav_bar" class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <img id="profile_picture" src="https://ca.slack-edge.com/T03F2SDTJ-U03LAJ4TPGF-a5e8f6cd90fe-512" class="rounded-circle" />
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item rounded" href="/profile">Your Profile</a>
-                                <a class="dropdown-item" onClick={() => {
-                                    localStorage.removeItem("aa_token")
-                                    localStorage.removeItem("user")
-                                    navigate('/login')
-                                }} href="#">Log Out</a>
-                            </div>
-                        </li>
+                        {
+                            Array.isArray(specificUsers) && specificUsers.map((specificUser) => {
+                                return (
+                                    <section key={`user--${specificUser.id}`}>
+                                        <li id="profile_pic_nav_bar" class="nav-item dropdown">
+                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <img id="profile_picture" src={specificUser?.profile_image} class="rounded-circle" />
+                                            </a>
+                                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                                <a class="dropdown-item rounded" href="/profile">Your Profile</a>
+                                                <a class="dropdown-item" onClick={() => {
+                                                    localStorage.removeItem("aa_token")
+                                                    localStorage.removeItem("user")
+                                                    navigate('/login')
+                                                }} href="#">Log Out</a>
+                                            </div>
+                                        </li>
+                                    </section>
+                                )
+                            })
+                        }
+
                     </div>
                 </>
                     :

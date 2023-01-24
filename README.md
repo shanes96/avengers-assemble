@@ -1,3 +1,16 @@
+# Welcome to Avengers Assemble! A full stack Marvel based game!
+
+Avengers Assemble is a Marvel based game where users can assemble their own Marvel team teams by browsing and selecting from the 8,000+ characters from Marvel Comics API. Users can then take their teams and challenge other users teams to battles. Other users will then vote on who they think will the battle. The first team to get two votes is the winner of that battle. 
+
+Some other features include:
+Front End Languages Used: HTML, CSS, React, Bootstrap
+Back-End Languages Used: Python, Django
+Browse 40,000+ comics from Marvel Comics API as well as search comic by character
+View specific details for each comic
+Browse all Marvel Movies using The Movie Database API as well as search movie by character
+View specific details for each movie 
+Character Search Bar where users can search their favorite character and then taken to a universal character profile page that displays the comics and movies the character appears in 
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
