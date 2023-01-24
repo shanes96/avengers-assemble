@@ -2,11 +2,13 @@ import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import "./BattlePage.css"
 import { getTeamsById, getUserById } from "../managers/AuthManager"
+import { getSpecificUserBattlesResults } from "../managers/BattleManager"
 
 export const BattleOpponentProfile = () => {
     const { opponentId } = useParams();
     const [specificTeams, setSpecificTeams] = useState([])
     const [specificUsers, setSpecificUsers] = useState([])
+    const [userBattleResults, setUserBattleResults] = useState([])
     const moviePosterPath = "https://image.tmdb.org/t/p/w500";
 
     useEffect(
@@ -29,8 +31,29 @@ export const BattleOpponentProfile = () => {
         [opponentId]
     )
 
-    return <section className="user-details"> <div className="user-details_title"></div>
+    useEffect(
+        () => {
+            getSpecificUserBattlesResults(opponentId)
+                .then((data) => {
+                    setUserBattleResults(data)
+                })
+        },
+        [opponentId]
+    )
 
+    return <section className="user-details"> <div className="user-details_title"></div>
+        {
+            userBattleResults.forEach(
+                (userBattleResult) => {
+                    if (userBattleResult?.winner?.user?.id === specificUsers.id) {
+                        specificUsers.user_wins++
+                    }
+                    if (userBattleResult?.loser?.user?.id === specificUsers.id) {
+                        specificUsers.user_losses++
+                    }
+                }
+            )
+        }
         <div id="profile_card" className="card" style={{ border: '0' }}>
             <div id="opponent_avatar" class="avatar">
                 <img src={specificUsers.profile_image} alt="Circle Image" class="img-raised rounded-circle img-fluid" />
@@ -38,6 +61,7 @@ export const BattleOpponentProfile = () => {
             <section key={`user--${specificUsers.id}`}>
                 <div id="user_real_name">{specificUsers.full_name}</div>
                 <div id="username">@{specificUsers?.user?.username}</div>
+                <div id="user_record">Record: {specificUsers.user_wins}-{specificUsers.user_losses}</div>
             </section>
 
             <div id="moviesCarousel" className="carousel slide" data-ride="carousel">

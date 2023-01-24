@@ -23,8 +23,10 @@ export const MovieMainPage = () => {
         fetch();
     }, [url,page]);
 
+
+
     const searchMovie = () => {
-        const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=a805a1ce4065c34d4f5f25ecb958aa83&query=${search}&with_networks=5`;
+        const searchUrl = `https://api.themoviedb.org/3/search/movie?api_key=a805a1ce4065c34d4f5f25ecb958aa83&query=${search}&sort_by=popularity.desc&with_companies=420`;
         setUrl(searchUrl);
         setSearch("");
     };
