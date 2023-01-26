@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import "./BattlePage.css"
-import { getTeamsById, getUserById } from "../managers/AuthManager"
-import { getSpecificUserBattlesResults } from "../managers/BattleManager"
+import { getBattlesById, getTeamsById, getUserById } from "../managers/AuthManager"
+import { getBattles, getSpecificUserBattlesResults } from "../managers/BattleManager"
+import { getCompletedBattles } from "../managers/BattleManager"
 
 export const BattleOpponentProfile = () => {
     const { opponentId } = useParams();
@@ -33,7 +34,7 @@ export const BattleOpponentProfile = () => {
 
     useEffect(
         () => {
-            getSpecificUserBattlesResults(opponentId)
+            getCompletedBattles(opponentId)
                 .then((data) => {
                     setUserBattleResults(data)
                 })

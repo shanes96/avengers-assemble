@@ -49,6 +49,15 @@ export const getTeamsById = (id) => {
         .then(response => response.json())
 }
 
+export const getBattlesById = (id) => {
+    return fetch(`http://localhost:8000/battles/${id}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("aa_token")}`
+        }
+    })
+        .then(response => response.json())
+}
+
 export const getMoviesById = (id) => {
     return fetch(`http://localhost:8000/movies/${id}`, {
         headers: {
