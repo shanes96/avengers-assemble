@@ -13,11 +13,15 @@ export const NavBar = () => {
 
     useEffect(() => {
         async function fetchData() {
-            const response = await getSpecificUserInfo(avengerUserObject);
+            const response = await getSpecificUserInfo(avengerUser);
             setSpecificUsers(response);
         }
-        fetchData();
-    }, [avengerUserObject]);
+        if (avengerUser) {
+            fetchData();
+        }
+    }, [avengerUser]);
+    
+    
 
     useEffect(() => {
         async function fetchData(searchQuery) {
