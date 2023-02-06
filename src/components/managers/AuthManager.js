@@ -122,6 +122,28 @@ export const deleteTeam = (id) => {
     })
 }
 
+
+export const deleteCharacter = (id) => {
+    return fetch(`http://localhost:8000/characterteams/${id}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("aa_token")}`,
+            "Content-Type": "application/json"
+        }, method: "DELETE"
+    })
+}
+
+export const addCharacterToCreatedTeam = (newCharacterForTeam) => {
+    return fetch(`http://localhost:8000/characterteams`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("aa_token")}`,
+            "Content-Type": "application/json"
+        }, 
+        method: "POST",
+        body: JSON.stringify(newCharacterForTeam)
+    })
+}
+
+
 export const addCharacter = (character) => {
     return fetch("http://localhost:8000/characters", {
         method: "POST",
