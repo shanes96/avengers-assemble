@@ -38,6 +38,12 @@
     right: 0.8%;
 }
 
+#update_team_button {
+    position: absolute;
+    top: 25%;
+    right: 0.8%;
+}
+
 .create_team_search_bar {
     outline: none;
     background: none;
@@ -75,7 +81,7 @@
     justify-content: space-between;
 }
 
-#create_character_picture{
+#create_character_picture {
     width: 100%;
     height: auto;
     min-height: 320px;
@@ -108,6 +114,7 @@
     font-family: 'Montserrat', sans-serif;
 
 }
+
 .card .title {
     text-align: center;
     padding: 1rem;
@@ -144,7 +151,24 @@
     align-items: center;
 }
 
-#update_team_text{
+#update_team_text {
     font-family: 'Montserrat', sans-serif;
     color: white;
+}
+
+#current_team {
+    position: absolute;
+    left: 670px;
+    top: 100px;
+    width: 30%;
+}
+
+#update_character_card {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+#update_character_image{
+    width: 100%;
+    height: auto;
 }
