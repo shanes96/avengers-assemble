@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import "./CreateTeam.css"
-import { getSingleTeam, updateTeam, deleteCharacter, addCharacter, addCharacterTeam, addCharacterToCreatedTeam } from '../managers/AuthManager'
+import { getSingleTeam, updateTeam, deleteCharacter, addCharacter, addCharacterToCreatedTeam, deleteCharacterFromTeam, deleteCharacterFromCreatedTeam } from '../managers/AuthManager'
 
-export const UpdateFormCard = ({data}) => {
+export const UpdateFormCard = ({ data }) => {
     const { teamId } = useParams()
     const navigate = useNavigate()
     const [characterArray, setCharacterArray] = useState([]);
+    const [tempAddedCharacters, setTempAddedCharacters] = useState([]);
+    const [tempDeletedCharacters, setTempDeletedCharacters] = useState([]);
+    const [displayCharacters, setDisplayCharacters] = useState(false);
     const [team, setNewTeamDetails] = useState({
         team_name: "",
         characters: []
@@ -23,11 +26,22 @@ export const UpdateFormCard = ({data}) => {
     }
 
     const handleDeleteCharacter = async characterId => {
-        await deleteCharacter(characterId);
+        await deleteCharacterFromCreatedTeam(characterId);
         setNewTeamDetails(newTeam => ({
             characters: newTeam.characters.filter(character => character.id !== characterId)
         }));
     };
+
+    const handleCharacterInfo = (teamId) => {
+        characterArray.forEach((chosenCharacter) => {
+            const characterAPI = {
+                team_id: teamId,
+                character_id: chosenCharacter.id,
+            };
+            addCharacterToCreatedTeam(characterAPI);
+        });
+    };
+
 
 
     const handleCharacterSelection = (characterId, characterName, characterPicture, characterExtension) => {
@@ -37,37 +51,47 @@ export const UpdateFormCard = ({data}) => {
             character_picture: characterPicture,
             character_extension: characterExtension,
         };
-        addCharacterToCreatedTeam(newCharacter).then((parsedResponse) => {
+    
+        addCharacter(newCharacter).then((parsedResponse) => {
             setCharacterArray((array) => [...array, parsedResponse]);
+    
+            // Add the selected character to the `newTeamDetails` state
+            setNewTeamDetails(newTeam => ({
+                ...newTeam,
+                characters: [...newTeam.characters, parsedResponse]
+            }));
         });
     };
+    
 
     return (
         <>
-            <div id='current_team'>
-                <h5 id='update_team_text'>Current Team:</h5>
-                {team?.characters?.map((character) => (
-                    <div id='update_character_card' class="card" style={{ width: "9rem" }} key={character.id} >
-                        <img id='update_character_image' src={`${character.character_picture}.${character.character_extension}`} class="card-img-top" alt={character.character_name} />
-                        <div class="card-body">
-                            <h5 class="card-title">{character.character_name}</h5>
-                            <button
-                                id="delete_team_button"
-                                class="btn btn-danger"
-                                onClick={() =>
-                                    window.confirm(`Are you sure you want to delete ${character.character_name}? from your team?`) &&
-                                    handleDeleteCharacter(character.id)
-                                }
-                            >
-                                Delete Character
-                            </button>
+            <button
+                id="view_team_button"
+                class="btn btn-danger"
+                onClick={() => setDisplayCharacters(!displayCharacters)}
+            >
+                {displayCharacters ? "View All Characters" : "View Current Team"}
+            </button>
 
+            {displayCharacters && (
+                team?.characters?.map((character) => (
+                    <div class="card" key={character.id} >
+                        <img id="create_character_picture" src={`${character.character_picture}.${character.character_extension}`} class="card-img-top" alt={character.character_name} />
+                        <div class="title">
+                            <h5>{character.character_name}</h5>
                         </div>
+                        <button
+                            id="delete_team_button"
+                            class="btn btn-danger"
+                            onClick={() => {
+                                handleDeleteCharacter(character.id)
+                            }}
+                        >Delete Character</button>
+
                     </div>
-                ))}
-            </div>
-
-
+                ))
+            )}
 
             <div id='team_name_field' class="field">
                 <label id='update_team_text' class="label">Team Name</label>
@@ -91,42 +115,48 @@ export const UpdateFormCard = ({data}) => {
                 onClick={evt => {
                     evt.preventDefault()
                     updateTeam(team, teamId)
+                        .then((parsedResponse) => handleCharacterInfo(teamId, parsedResponse.id))
                         .then(() => navigate("/profile"))
                 }}
             >
                 Update Team!
             </button>
-            {data ? (
-                data.map((item) => (
-                    <div className="card" key={item.id}>
-                        <img id="create_character_picture" src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt="" />
-                        <div className="title">
-                            <h3>{item.name}</h3>
-                        </div>
-                        <div className="checkbox-container">
-                            <input
-                                type="checkbox"
-                                className="addTags"
-                                value={false}
-                                onChange={() =>
-                                    handleCharacterSelection(
-                                        item.id,
-                                        item.name,
-                                        item.thumbnail.path,
-                                        item.thumbnail.extension
-                                    )
-                                }
-                            />
-                            <label>Add Character To Team</label>
-                        </div>
-                        <button class="btn btn-dark" onClick={() => navigate(`/${item.id}/characterInfo`)}>
-                            Learn More
-                        </button>
-                    </div>
-                ))
-            ) : (
-                ""
-            )}
+            {
+                !displayCharacters ? (
+                    data ? (
+                        data.map((item) => (
+                            <div className="card" key={item.id}>
+                                <img id="create_character_picture" src={`${item.thumbnail.path}.${item.thumbnail.extension}`} alt="" />
+                                <div className="title">
+                                    <h3>{item.name}</h3>
+                                </div>
+                                <div className="checkbox-container">
+                                    <input
+                                        type="checkbox"
+                                        className="addTags"
+                                        value={false}
+                                        onChange={() =>
+                                            handleCharacterSelection(
+                                                item.id,
+                                                item.name,
+                                                item.thumbnail.path,
+                                                item.thumbnail.extension
+                                            )
+                                        }
+                                    />
+                                    <label>Add Character To Team</label>
+                                </div>
+                                <button class="btn btn-dark" onClick={() => navigate(`/${item.id}/characterInfo`)}>
+                                    Learn More
+                                </button>
+                            </div>
+                        ))
+                    ) : (
+                        ""
+                    )
+                ) : ""
+            }
+
         </>
     )
 }
