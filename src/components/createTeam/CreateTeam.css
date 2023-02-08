@@ -38,9 +38,15 @@
     right: 0.8%;
 }
 
-#update_team_button {
+#view_team_button {
     position: absolute;
     top: 25%;
+    right: 0.8%;
+}
+
+#update_team_button {
+    position: absolute;
+    top: 30%;
     right: 0.8%;
 }
 
@@ -163,10 +169,6 @@
     width: 30%;
 }
 
-#update_character_card {
-    display: inline-block;
-    margin-right: 10px;
-}
 
 #update_character_image{
     width: 100%;
