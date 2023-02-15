@@ -30,8 +30,7 @@ export const UpdateTeamForm = () => {
         <>
             <h1 id='update_team_text' >Update Your Avengers Team</h1>
             <h4 id='update_team_text' >Edit Your Team Name!</h4>
-            <p id='update_team_text'>Coming Soon! Add & Delete Characters To Your Team!</p>
-
+            <p id='update_team_text'>Add or Delete Characters To Your Team!</p>
             <aside className="create_team_search_bar">
                 <input type="search" placeholder='Search Character' id="search"
                     class="form-control"
