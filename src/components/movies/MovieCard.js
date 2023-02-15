@@ -11,6 +11,7 @@ export const MovieCard = ({ data }) => {
         }
         addMovieForUser(MovieAPI)
     }
+    
     let img_path = "https://image.tmdb.org/t/p/w500";
 
     return (

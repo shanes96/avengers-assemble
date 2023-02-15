@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import "./CreateTeam.css"
-import { getSingleTeam, updateTeam, deleteCharacter, addCharacter, addCharacterToCreatedTeam, deleteCharacterFromTeam, deleteCharacterFromCreatedTeam } from '../managers/AuthManager'
+import { getSingleTeam, updateTeam, addCharacter, addCharacterToCreatedTeam, deleteCharacterFromCreatedTeam } from '../managers/AuthManager'
 
 export const UpdateFormCard = ({ data }) => {
     const { teamId } = useParams()
     const navigate = useNavigate()
     const [characterArray, setCharacterArray] = useState([]);
-    const [tempAddedCharacters, setTempAddedCharacters] = useState([]);
-    const [tempDeletedCharacters, setTempDeletedCharacters] = useState([]);
     const [displayCharacters, setDisplayCharacters] = useState(false);
     const [team, setNewTeamDetails] = useState({
         team_name: "",
@@ -27,10 +25,13 @@ export const UpdateFormCard = ({ data }) => {
 
     const handleDeleteCharacter = async characterId => {
         await deleteCharacterFromCreatedTeam(characterId);
+        setCharacterArray(characterArray.filter(character => character.id !== characterId));
         setNewTeamDetails(newTeam => ({
+            ...newTeam,
             characters: newTeam.characters.filter(character => character.id !== characterId)
         }));
     };
+
 
     const handleCharacterInfo = (teamId) => {
         characterArray.forEach((chosenCharacter) => {
@@ -51,10 +52,10 @@ export const UpdateFormCard = ({ data }) => {
             character_picture: characterPicture,
             character_extension: characterExtension,
         };
-    
+
         addCharacter(newCharacter).then((parsedResponse) => {
             setCharacterArray((array) => [...array, parsedResponse]);
-    
+
             // Add the selected character to the `newTeamDetails` state
             setNewTeamDetails(newTeam => ({
                 ...newTeam,
@@ -62,7 +63,6 @@ export const UpdateFormCard = ({ data }) => {
             }));
         });
     };
-    
 
     return (
         <>
