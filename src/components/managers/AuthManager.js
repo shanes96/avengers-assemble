@@ -10,12 +10,44 @@ export const loginUser = (user) => {
         .then(res => res.json())
 }
 
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+
 export const registerUser = (user) => {
-    return fetch("http://127.0.0.1:8000/register", {
+    const csrftoken = getCookie('csrftoken');
+    return fetch("http://localhost:8000/register", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            "Accept": "application/json"
+            "Accept": "application/json",
+            "X-CSRFToken": csrftoken
+        },
+        body: JSON.stringify(user)
+    })
+        .then(res => res.json())
+}
+
+
+export const sendWelcomeEmailToUser = (user) => {
+    return fetch("http://127.0.0.1:8000/email", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json",
         },
         body: JSON.stringify(user)
     })

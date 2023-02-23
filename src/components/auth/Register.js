@@ -1,6 +1,6 @@
 import React, { useRef } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { registerUser } from "../managers/AuthManager"
+import { registerUser, sendWelcomeEmailToUser } from "../managers/AuthManager"
 import "./Login.css"
 
 export const Register = () => {
@@ -11,13 +11,16 @@ export const Register = () => {
     const verifyPassword = useRef()
     const passwordDialog = useRef()
     const email = useRef()
+    const csrf_token= useRef
     const navigate = useNavigate()
+
+    //integrate client side code
 
     const handleRegister = (e) => {
         e.preventDefault()
-
+    
         if (password.current.value === verifyPassword.current.value) {
-            const newUser = {
+            const user = {
                 "username": username.current.value,
                 "first_name": firstName.current.value,
                 "last_name": lastName.current.value,
@@ -25,8 +28,8 @@ export const Register = () => {
                 "verifyPassword":verifyPassword.current.value,
                 "email": email.current.value
             }
-
-            registerUser(newUser)
+    
+            registerUser(user)
                 .then(res => {
                     if ("token" in res) {
                         localStorage.setItem("aa", res.token)
@@ -37,6 +40,7 @@ export const Register = () => {
             passwordDialog.current.showModal()
         }
     }
+    
 
     return (
         <>
@@ -56,7 +60,7 @@ export const Register = () => {
 
             <div id="register_card" class="card text-center">
                 <div class="card-body">
-                    <form onSubmit={handleRegister}>
+                    <form method="POST" onSubmit={handleRegister}>
                         <div class="form-group">
                             <label for="exampleInputEmail1">First Name</label>
                             <input ref={firstName} class="form-control" id="exampleInputEmail1" />
@@ -67,7 +71,7 @@ export const Register = () => {
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">UserName</label>
-                            <input ref={username} class="form-control" id="exampleInputPassword1" />
+                            <input ref={username} class="form-control" id="exampleInputUsername1" />
                         </div>
                         <div class="form-group">
                             <label for="exampleInputPassword1">Password</label>
