@@ -39,7 +39,7 @@ export const ComicsMainPage = () => {
                 <div className="content">
 
                     {
-                        (!item) ? <p>Not Found</p> : <ComicCard data={item} />
+                        (!item) ? <p></p> : <ComicCard data={item} />
                     }
                 </div>
                 <div className="page_buttons">
