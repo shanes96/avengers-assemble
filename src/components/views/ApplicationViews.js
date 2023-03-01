@@ -31,7 +31,7 @@ export const ApplicationViews = () => {
                     <Route path="/comics" element={<ComicsMainPage />} />
                     <Route path="/movies" element={<MovieMainPage />} />
                     <Route path="/createTeam" element={<CreateTeamForm />} />
-                    <Route path="/checkout" element={<TestPayment />} />
+                    <Route path="/test-payment" element={<TestPayment />} />
                     <Route path="/createBattle" element={<CreateBattleForm />} />
                     <Route path='/:id/comicInfo' element={<ComicsDetails/>}/>
                     <Route path='/:id/characterInfo' element={<Marvel/>}/>
