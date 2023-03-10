@@ -30,3 +30,15 @@ export const getComics = () => {
     })
         .then(response => response.json())
 }
+
+export const updateComicQuantity = (singleComic, id) => {
+    return fetch(`http://localhost:8000/comics/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json",
+            "Authorization": `Token ${localStorage.getItem("aa_token")}`
+        },
+        body: JSON.stringify(singleComic)
+
+    })
+}

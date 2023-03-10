@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 import axios from 'axios';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { addComicToCart, addComicToUserCart } from '../managers/CartManager';
 export const ComicsDetails = () => {
     const { id } = useParams();
     const [allItems, setItem] = useState()
@@ -27,6 +28,12 @@ export const ComicsDetails = () => {
                                 <div id='comic_detail_title' className="title">
                                     <h3>{comic.title}</h3>
                                 </div>
+                                <button type="button"
+                                id="team_one_button" 
+                                class="btn btn-dark"
+                                onClick={addComicToUserCart()}
+                                >
+                                    Add To Cart</button>
                                 <div id="creators">Creators:</div>
                                 {
                                     comic?.creators?.items.map(item => {

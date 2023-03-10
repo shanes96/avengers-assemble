@@ -15,6 +15,7 @@ import { CreateBattleForm } from "../battles/CreateBattleForm"
 import { UpdateBattleForm } from "../battles/UpdateBattleForm"
 import { CharacterProfilePage } from "../search/SearchCharacter"
 import { BattleOpponentProfile } from "../battles/BattleOpponentProfile"
+import { ShoppingCart } from "../payments/ShoppingCart"
 import TestPayment from "../payments/TestPayment"
 export const ApplicationViews = () => {
     
@@ -31,7 +32,7 @@ export const ApplicationViews = () => {
                     <Route path="/comics" element={<ComicsMainPage />} />
                     <Route path="/movies" element={<MovieMainPage />} />
                     <Route path="/createTeam" element={<CreateTeamForm />} />
-                    <Route path="/test-payment" element={<TestPayment />} />
+                    <Route path="/shoppingcart" element={<ShoppingCart />} />
                     <Route path="/createBattle" element={<CreateBattleForm />} />
                     <Route path='/:id/comicInfo' element={<ComicsDetails/>}/>
                     <Route path='/:id/characterInfo' element={<Marvel/>}/>
