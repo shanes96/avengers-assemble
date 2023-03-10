@@ -1,28 +1,8 @@
 import { getSpecificUserShoppingCart } from "../managers/CartManager"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { updateComicQuantity } from "../managers/ComicManager"
 import "./TestPayment.css"
-
-const ProductDisplay = () => (
-    <section id="shopping_cart_section">
-        <div id="product">
-            <img
-                id="image"
-                src="https://cdn.marvel.com/u/prod/marvel/i/mg/f/10/598363848588e/detail.jpg"
-                alt="The cover of Stubborn Attachments"
-            />
-            <div id="description">
-                <h3 id="shopping_cart_text">Amazing Fantasy 15</h3>
-                <h5 id="shopping_cart_text">$10.00</h5>
-            </div>
-        </div>
-        <form action="http://localhost:4242/create-checkout-session" method="POST">
-            <button type="submit" class="btn btn-danger">
-                Checkout
-            </button>
-        </form>
-    </section>
-)
 
 const Message = ({ message }) => (
     <section>
@@ -30,7 +10,7 @@ const Message = ({ message }) => (
     </section>
 )
 
-export const TestPayment = () => {
+export const ShoppingCart = () => {
     const [allCarts, setAllCarts] = useState([])
     const [message, setMessage] = useState("")
     const [showProductDisplay, setShowProductDisplay] = useState(true)
@@ -74,12 +54,25 @@ export const TestPayment = () => {
                                 />
                                 <div id="description">
                                     <h3 id="shopping_cart_text">{comic.comic_title}</h3>
-                                    <h5 id="shopping_cart_text">$10.00</h5>
+                                    <h5 id="shopping_cart_text">${comic.comic_price}</h5>
+                                    <div>
+                                        <h5 id="shopping_cart_text">Quantity:</h5>
+                                        <select  value={comic.quantity}>
+                                            {[...Array(10).keys()].map((quantity) => (
+                                                <option key={quantity} value={quantity + 1}>
+                                                    {quantity + 1}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+
+
                                 </div>
                             </div>
                         ))}
+                        <div>Total:</div>
                         <form
-                            action="http://localhost:4242/create-checkout-session"
+                            action="http://localhost:8000/create-checkout-session"
                             method="POST"
                         >
                             <button type="submit" class="btn btn-danger">
@@ -90,7 +83,7 @@ export const TestPayment = () => {
                 )
             })}
             {message && <Message message={message} />}
-            {showProductDisplay && <ProductDisplay />}
+            {showProductDisplay}
         </>
     )
 }
