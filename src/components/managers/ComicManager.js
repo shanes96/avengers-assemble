@@ -31,14 +31,24 @@ export const getComics = () => {
         .then(response => response.json())
 }
 
-export const updateComicQuantity = (singleComic, id) => {
-    return fetch(`http://localhost:8000/comics/${id}`, {
+export const updateComicQuantity = (id, quantity) => {
+    return fetch(`http://localhost:8000/cartcomics/${id}`, {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
             "Authorization": `Token ${localStorage.getItem("aa_token")}`
         },
-        body: JSON.stringify(singleComic)
+        body: JSON.stringify({ quantity: quantity })
+    }).then(response => response.json());
+}
 
+
+
+export const deleteComic = (id) => {
+    return fetch(`http://localhost:8000/cartcomics/${id}`, {
+        headers: {
+            "Authorization": `Token ${localStorage.getItem("aa_token")}`,
+            "Content-Type": "application/json"
+        }, method: "DELETE"
     })
 }
