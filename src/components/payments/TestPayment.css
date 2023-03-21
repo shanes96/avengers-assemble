@@ -1,5 +1,14 @@
-#shopping_cart_section{
-    background: #ffffff;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,900&family=Oleo+Script+Swash+Caps&display=swap');
+
+
+#delete_comic_button{
+    font-family: 'Montserrat', sans-serif;
+    width: 300px;
+
+}
+
+#shopping_cart_section {
+    background-color: white;    
     display: flex;
     flex-direction: column;
     border-radius: 6px;
@@ -16,7 +25,7 @@
     justify-content: center;
 }
 
-#payment_text{
+#payment_text {
     font-style: normal;
     font-weight: 500;
     font-size: 20px;
@@ -33,21 +42,41 @@
 }
 
 #image {
-    border-radius: 6px;
-    margin: 10px;
-    width: 74px;
-    height: 100px;
+    width: 200px; /* adjust to the desired size */
+    height: auto; /* preserve aspect ratio */
+    padding: 10px;
 }
 
-#shopping_cart_text{
+select {
+    font-size: 18px; /* adjust to the desired size */
+  }
+
+#shopping_cart_text {
     font-style: normal;
     font-weight: 500;
-    font-size: 14px;
     line-height: 20px;
     letter-spacing: -0.154px;
     color: black;
     margin: 0;
+    font-size: 24px; /* adjust to the desired size */
+    font-weight: bold;
+    
 }
+
+#divider {
+    float: left;
+    height: 330px;
+    margin-top: -190px;
+    margin-left: -20px;
+
+  }
+
+
+/* #subtotal{
+   margin: auto;
+   margin-right:-50% ;
+} */
+
 
 
 /* h5 {
@@ -65,21 +94,27 @@ button {
     letter-spacing: 0.6;
     border-radius: 0 0 6px 6px;
     transition: all 0.2s ease;
-    box-shadow: 0px 4px 5.5px 0px rgba(0, 0, 0, 0.07);
+    box-shadow: red;
+    font-family: 'Montserrat', sans-serif;
 }
+
+
 
 button:hover {
     opacity: 0.8;
 }
 
-#checkout_box{
+#checkout_box {
     margin: auto;
     margin-right: 100px;
-    margin-top: -100px ;
+    margin-top: -100px;
 }
 
-#checkout{
-    position: absolute;
-    margin-left: 800px;
-    margin-top: -250px;
+#checkout {
+    position: fixed;
+    right: 0;
+    padding-right: 20px;
+    top: 110px;
+    display: inline-block;
+    margin-right: 20px;
 }

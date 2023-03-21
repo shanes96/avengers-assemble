@@ -17,6 +17,7 @@ import { CharacterProfilePage } from "../search/SearchCharacter"
 import { BattleOpponentProfile } from "../battles/BattleOpponentProfile"
 import { ShoppingCart } from "../payments/ShoppingCart"
 import TestPayment from "../payments/TestPayment"
+import { SuccessMessage } from "../payments/SuccessMessage"
 export const ApplicationViews = () => {
     
     return <>
@@ -28,6 +29,7 @@ export const ApplicationViews = () => {
                     <Route path="/characterProfile" element={<CharacterProfilePage />} />
                     <Route path="/profile" element={<UserProfile />} />
                     <Route path="/battles" element={<BattlePage />} />
+                    <Route path="/success" element={<SuccessMessage />} />
                     <Route path="/characters" element={<CharacterProfilePage/>} />
                     <Route path="/comics" element={<ComicsMainPage />} />
                     <Route path="/movies" element={<MovieMainPage />} />

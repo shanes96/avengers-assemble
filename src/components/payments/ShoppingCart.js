@@ -1,4 +1,4 @@
-import { getCartTotal, getSpecificUserShoppingCart } from "../managers/CartManager"
+import { checkoutUser, getCartTotal, getSpecificUserShoppingCart } from "../managers/CartManager"
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { deleteComic, updateComicQuantity } from "../managers/ComicManager"
@@ -31,6 +31,8 @@ export const ShoppingCart = () => {
                 "Order placed! You will receive an email confirmation."
             setMessage(successMessage)
             setShowProductDisplay(false)
+            console.log('Success message:', successMessage)
+
         }
 
         if (query.get("canceled")) {
@@ -38,58 +40,64 @@ export const ShoppingCart = () => {
                 "Order canceled -- continue to shop around and checkout when you're ready."
             )
             setShowProductDisplay(false)
+            console.log('Canceled message:', message)
+
         }
     }, [])
 
     return (
         <>
-            {allCarts?.map((cart) => {
-                return (
-                    <section id="shopping_cart_section" key={cart.id}>
-                        <div id="product">
-                            <img
-                                id="image"
-                                src={`${cart?.comic?.comic_picture}.${cart?.comic?.comic_extension}`}
-                            />
-                            <div id="description">
-                                <h3 id="shopping_cart_text">{cart?.comic?.comic_title}</h3>
-                                <h5 id="shopping_cart_text">${cart?.comic?.comic_price}</h5>
-                                <h7 id="shopping_cart_text">Subtotal:${cart?.comic_sub_total}</h7>
-                                <div>
-                                    <h5 id="shopping_cart_text">Quantity:</h5>
-                                    <select onChange={(event) => {
-                                        updateComicQuantity(cart?.comic?.id, event.target.value)
-                                            .then(updatedComic => {
-                                                setAllCarts(prevCart => ({
-                                                    ...prevCart,
-                                                    comic: updatedComic
-                                                }));
-                                            });
-                                        window.location.reload()
-                                    }}
-                                        value={cart?.quantity}>
-                                        {[...Array(10).keys()].map((quantity) => (
-                                            <option key={quantity} value={quantity + 1}>
-                                                {quantity + 1}
-                                            </option>
-                                        ))}
-                                    </select>
+            {allCarts.length === 0 ? (
+                <div>No items in cart</div>
+            ) : (
+                allCarts?.map((cart) => {
+                    return (
+                        <section id="shopping_cart_section" key={cart.id}>
+                            <div id="product">
+                                <img
+                                    id="image"
+                                    src={`${cart?.comic?.comic_picture}.${cart?.comic?.comic_extension}`}
+                                />
+                                <div id="description">
+                                    <h3 id="shopping_cart_text">{cart?.comic?.comic_title}</h3>
+                                    <h5 id="shopping_cart_text">${cart?.comic?.comic_price}</h5>
+                                    {/* <h7 id="shopping_cart_text">Subtotal:${cart?.comic_sub_total}</h7> */}
+                                    <div>
+                                        <select onChange={(event) => {
+                                            updateComicQuantity(cart?.comic?.id, event.target.value)
+                                                .then(updatedComic => {
+                                                    setAllCarts(prevCart => ({
+                                                        ...prevCart,
+                                                        comic: updatedComic
+                                                    }));
+                                                });
+                                            window.location.reload()
+                                        }}
+                                            value={cart?.quantity}>
+                                            {[...Array(10).keys()].map((quantity) => (
+                                                <option key={quantity} value={quantity + 1}>
+                                                    {quantity + 1}
+                                                </option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <button
+                                        id="delete_comic_button"
+                                        class="btn btn-danger"
+                                        onClick={() => {
+                                            deleteComic(cart?.id)
+                                                .then(() => {
+                                                    window.location.reload(false);
+                                                })
+                                        }}
+                                    >Delete Comic From Cart</button>
                                 </div>
-                                <button
-                                    class="btn btn-danger"
-                                    onClick={() => {
-                                        deleteComic(cart?.id)
-                                            .then(() => {
-                                                window.location.reload(false);
-                                            })
-                                    }}
-                                >Delete Comic From Cart</button>
                             </div>
-                        </div>
+                        </section>
+                    )
+                })
+            )}
 
-                    </section>
-                )
-            })}
             <div id="checkout" class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
                     <span class="text-muted">Your cart</span>
@@ -115,25 +123,18 @@ export const ShoppingCart = () => {
                     </li>
                 </ul>
 
-                        <form
-                            action="http://localhost:8000/create-checkout-session"
-                            method="POST"
-                        >
-                            <button type="submit" class="btn btn-secondary">
-                                Checkout
-                            </button>
-                        </form>                       
-            </div>
-
-            {/* <form
-                action="http://localhost:8000/create-checkout-session"
-                method="POST"
-            >
-                <button type="submit" class="btn btn-secondary">
+                <button
+                    class="btn btn-secondary"
+                    onClick={() => {
+                        checkoutUser(allCarts.length > 0 ? allCarts[0].cart?.id : null)
+                    }}
+                >
                     Checkout
                 </button>
-            </form> */}
-            {message && <Message message={message} />}
+                <div id="divider" className="vr"></div>
+                {message && <Message message={message} />}
+            </div>
+
             {showProductDisplay}
         </>
     )
