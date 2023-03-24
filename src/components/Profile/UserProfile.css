@@ -29,9 +29,13 @@
 }
 
 #delete_team_button{
-    display: block;
-    margin-top: 10px;
     font-family: 'Montserrat', sans-serif;
+    width: 200px;
+}
+
+#create_team_button{
+    font-family: 'Montserrat', sans-serif;
+    width: 240px;
 }
 
 #delete_team_button{
