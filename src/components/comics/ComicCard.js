@@ -26,30 +26,31 @@ export const ComicCard = ({ data }) => {
                                     <h3>{item.title}</h3>
                                 </div>
                                 <div className='card_button_container'>
-                                <button
-                                id="comic_button"
-                                class="btn btn-danger"
-                                    type="submit"
-                                    onClick={(evt) => {
-                                        evt.preventDefault()
-                                        const newComic = {
-                                            comic_id: item.id,
-                                            comic_title: item.title,
-                                            comic_picture: item.thumbnail.path,
-                                            comic_extension: item.thumbnail.extension
-                                        }
-                                        addComic(newComic).then(parsedResponse => { comicInfo(parsedResponse) })
-                                            .then(() => {
-                                                alert("This comic has been added to your favorite comics list on your profile!")
-                                                navigate("/profile")
-                                            })
-                                    }}
-                                >
-                                    Add Comic to My Favorite Comics List
-                                </button>
+                                    <button
+                                        id="comic_button"
+                                        class="btn btn-danger"
+                                        type="submit"
+                                        onClick={(evt) => {
+                                            evt.preventDefault()
+                                            const newComic = {
+                                                comic_id: item.id,
+                                                comic_title: item.title,
+                                                comic_picture: item.thumbnail.path,
+                                                comic_extension: item.thumbnail.extension,
+                                                comic_price: 10.00
+                                            }
+                                            addComic(newComic).then(parsedResponse => { comicInfo(parsedResponse) })
+                                                .then(() => {
+                                                    alert("This comic has been added to your favorite comics list on your profile!")
+                                                    navigate("/profile")
+                                                })
+                                        }}
+                                    >
+                                        Add to Favorites <i class="fa fa-heart"></i>                      
+                                                </button>
 
-                                <button id="comic_button"class="btn btn-danger" onClick={() => navigate(`/${item.id}/comicInfo`)}>Learn More</button>
-                            </div>
+                                    <button id="comic_button" class="btn btn-danger" onClick={() => navigate(`/${item.id}/comicInfo`)}>Learn More</button>
+                                </div>
                             </div>
                         )
                     })

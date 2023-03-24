@@ -113,7 +113,7 @@ export const UserProfile = () => {
 
 
             <div id="comicCarousel" className="carousel slide" data-ride="carousel">
-                <div className="carousel-inner" >
+                <div className="carousel-inner">
                     {specificComics.map((specificComic, index) => (
                         <div key={`user--${specificComic.id}`} className={index === 0 ? 'carousel-item active' : 'carousel-item'}>
                             <div className="card" style={{ border: '0' }} >
@@ -123,16 +123,21 @@ export const UserProfile = () => {
                         </div>
                     ))}
                 </div>
-                <a className="carousel-control-prev" href="#comicCarousel" role="button" data-slide="prev" style={{ color: 'black' }}>
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#comicCarousel" role="button" data-slide="next" style={{ color: 'black' }}>
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
+                {specificComics.length > 1 && (
+                    <>
+                        <a className="carousel-control-prev" href="#comicCarousel" role="button" data-slide="prev" style={{ color: 'black' }}>
+                            <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span className="sr-only">Previous</span>
+                        </a>
+                        <a className="carousel-control-next" href="#comicCarousel" role="button" data-slide="next" style={{ color: 'black' }}>
+                            <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span className="sr-only">Next</span>
+                        </a>
+                    </>
+                )}
             </div>
             <div className="user_content">Favorite Comics</div>
+
 
             {specificTeams.map((specificTeam, index) => (
                 <div key={`user--${specificTeam.id}`}>
@@ -147,7 +152,7 @@ export const UserProfile = () => {
                                 })
                         }}
                     >Delete Team</button>
-                    <button id="delete_team_button" class="btn btn-danger"
+                    <button id="create_team_button" class="btn btn-danger"
                         onClick={() => navigate(`/createTeam`)}
                     >Create a New Team!</button>
 
