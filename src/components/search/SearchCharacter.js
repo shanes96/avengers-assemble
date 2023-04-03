@@ -44,6 +44,11 @@ export const CharacterProfilePage = () => {
         // Set the character data in state
         setCharacter({
             name: characterData.name,
+            series:characterData.series,
+            stories:characterData.stories,
+            appearance:characterData.comics,
+            events:characterData.events,
+            description:characterData.description,
             image: characterData.thumbnail.path,
             extension: characterData.thumbnail.extension,
             comics: characterData.comics.items,
@@ -63,6 +68,11 @@ export const CharacterProfilePage = () => {
                     <div id="avatar" class="avatar">
                         <img src={`${character.image}.${character.extension}`} alt="Circle Image" class="img-raised rounded-circle img-fluid" />
                     </div>
+                    <p>Comic Appearances:{character?.appearance?.available}</p>
+                    <p>Events:{character?.events?.available}</p>
+                    <p>Stories:{character?.stories?.available}</p>
+                    <p>Series:{character?.series?.available}</p>
+                    <p>{character.description}</p>
                     <div id="characterComicCarousel" className="carousel slide" data-ride="carousel">
                         <div className="carousel-inner" >
                             {character.comics?.map((comic, index) => (

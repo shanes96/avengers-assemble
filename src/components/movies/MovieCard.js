@@ -44,7 +44,7 @@ export const MovieCard = ({ data }) => {
                                             })
                                     }}
                                 >
-                                    Add Movie to My Favorite Movies List
+                                    Add To Favorites
                                 </button>
                                 <button id="movie_button" class="btn btn-secondary" onClick={() => navigate(`/${item.id}/movieInfo`)}>Learn More</button>
                             </div>
