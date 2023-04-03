@@ -5,7 +5,7 @@ import "./SearchCharacter.css"
 
 export const CharacterProfilePage = () => {
     const location = useLocation();
-    
+
     // Parse the query string to get the query parameter
     const searchParams = new URLSearchParams(location.search);
     const query = searchParams.get('query');
@@ -44,11 +44,11 @@ export const CharacterProfilePage = () => {
         // Set the character data in state
         setCharacter({
             name: characterData.name,
-            series:characterData.series,
-            stories:characterData.stories,
-            appearance:characterData.comics,
-            events:characterData.events,
-            description:characterData.description,
+            series: characterData.series,
+            stories: characterData.stories,
+            appearance: characterData.comics,
+            events: characterData.events,
+            description: characterData.description,
             image: characterData.thumbnail.path,
             extension: characterData.thumbnail.extension,
             comics: characterData.comics.items,
@@ -68,11 +68,25 @@ export const CharacterProfilePage = () => {
                     <div id="avatar" class="avatar">
                         <img src={`${character.image}.${character.extension}`} alt="Circle Image" class="img-raised rounded-circle img-fluid" />
                     </div>
-                    <p>Comic Appearances:{character?.appearance?.available}</p>
-                    <p>Events:{character?.events?.available}</p>
-                    <p>Stories:{character?.stories?.available}</p>
-                    <p>Series:{character?.series?.available}</p>
-                    <p>{character.description}</p>
+                    <div class="additional-info">
+                        <div class="circle circle--yellow">
+                            <span>{character?.series?.available}</span>
+                            <span>Series</span>
+                        </div>
+                        <div class="circle circle--yellow">
+                            <span>{character?.stories?.available}</span>
+                            <span>Stories</span>
+                        </div>
+                        <div class="circle circle--yellow">
+                            <span>{character?.events?.available}</span>
+                            <span>Events</span>
+                        </div>
+                        <div class="circle circle--yellow">
+                            <span>{character?.appearance?.available}</span>
+                            <span>Comics</span>
+                        </div>
+                    </div>
+                    <p class="description">{character.description}</p>
                     <div id="characterComicCarousel" className="carousel slide" data-ride="carousel">
                         <div className="carousel-inner" >
                             {character.comics?.map((comic, index) => (
