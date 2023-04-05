@@ -151,10 +151,7 @@
     margin: 5px 0px;
 }
 
-.description {
-    background-color: black;
-    color: white;
-    padding: 20px;
+#description {
     font-family: 'Montserrat', sans-serif;
 }
 

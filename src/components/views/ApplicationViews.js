@@ -16,7 +16,6 @@ import { UpdateBattleForm } from "../battles/UpdateBattleForm"
 import { CharacterProfilePage } from "../search/SearchCharacter"
 import { BattleOpponentProfile } from "../battles/BattleOpponentProfile"
 import { ShoppingCart } from "../payments/ShoppingCart"
-import TestPayment from "../payments/TestPayment"
 import { SuccessMessage } from "../payments/SuccessMessage"
 export const ApplicationViews = () => {
     

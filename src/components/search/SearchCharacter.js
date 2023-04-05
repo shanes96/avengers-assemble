@@ -94,7 +94,7 @@ export const CharacterProfilePage = () => {
                             id='delete_team_button' onClick={() => window.open(character?.comicLink[2].url, '_blank')}>Browse All Comics</button>
                         </div>
                     </div>
-                    <p class="description">{character.description}</p>
+                    <p id='description' class="p-3 mb-2 bg-danger text-white">{character.description}</p>
                     <div id="characterComicCarousel" className="carousel slide" data-ride="carousel">
                         <div className="carousel-inner" >
                             {character.comics?.map((comic, index) => (
