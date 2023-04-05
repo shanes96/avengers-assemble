@@ -2,7 +2,7 @@ import { checkoutUser, getCartTotal, getSpecificUserShoppingCart } from "../mana
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { deleteComic, updateComicQuantity } from "../managers/ComicManager"
-import "./TestPayment.css"
+import "./ShoppingCart.css"
 
 const Message = ({ message }) => (
     <section>
