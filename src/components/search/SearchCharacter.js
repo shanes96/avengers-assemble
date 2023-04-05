@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 import "./SearchCharacter.css"
 
 export const CharacterProfilePage = () => {
     const location = useLocation();
+    const navigate = useNavigate()
 
     // Parse the query string to get the query parameter
     const searchParams = new URLSearchParams(location.search);
@@ -47,6 +49,7 @@ export const CharacterProfilePage = () => {
             series: characterData.series,
             stories: characterData.stories,
             appearance: characterData.comics,
+            comicLink: characterData.urls,
             events: characterData.events,
             description: characterData.description,
             image: characterData.thumbnail.path,
@@ -69,21 +72,26 @@ export const CharacterProfilePage = () => {
                         <img src={`${character.image}.${character.extension}`} alt="Circle Image" class="img-raised rounded-circle img-fluid" />
                     </div>
                     <div class="additional-info">
-                        <div class="circle circle--yellow">
+                        <div class="circle circle--red">
                             <span>{character?.series?.available}</span>
                             <span>Series</span>
                         </div>
-                        <div class="circle circle--yellow">
+                        <div class="circle circle--red">
                             <span>{character?.stories?.available}</span>
                             <span>Stories</span>
                         </div>
-                        <div class="circle circle--yellow">
+                        <div class="circle circle--red">
                             <span>{character?.events?.available}</span>
                             <span>Events</span>
                         </div>
-                        <div class="circle circle--yellow">
+                        <div class="circle circle--red">
                             <span>{character?.appearance?.available}</span>
                             <span>Comics</span>
+                        </div>
+                        <div>
+                            <button 
+                            class="btn btn-danger"
+                            id='delete_team_button' onClick={() => window.open(character?.comicLink[2].url, '_blank')}>Browse All Comics</button>
                         </div>
                     </div>
                     <p class="description">{character.description}</p>
