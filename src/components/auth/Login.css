@@ -108,7 +108,12 @@
     justify-content: center;
 }
 
-#register_button, #submit_button{
+#register_button{
+    margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#submit_button{
     margin: 0 10px;
 }
 
