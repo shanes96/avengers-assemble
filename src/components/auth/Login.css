@@ -35,8 +35,8 @@
 
 }
 
-#image {
-    max-width: 100%;
+#login-spiderman-image{
+    width: 350px;
 }
 
 .container {
@@ -46,16 +46,15 @@
     align-items: center;
 }
 
-.container .spiderman {
-    width: 380px;
+.spider-man {
+    width: 800px;
     vertical-align: top;
     margin-top: -60px;
     animation-name: animar;
     animation-duration: 2s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
-    margin-left: -800px;
-    
+    margin-left: -800px;    
 }
 
 .shadow {
