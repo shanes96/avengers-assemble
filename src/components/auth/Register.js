@@ -47,7 +47,7 @@ export const Register = () => {
 
             <div className="background">
                 <div class="container">
-                    <img id="image" class="spiderman" src="https://i.ibb.co/XDFkXMx/spiderman-colgado.png" alt="" />
+                    <img id="login-spiderman-image" class="spider-man" src="https://i.ibb.co/XDFkXMx/spiderman-colgado.png" alt="" />
                     <div class="shadow"></div>
                 </div>
             </div>
